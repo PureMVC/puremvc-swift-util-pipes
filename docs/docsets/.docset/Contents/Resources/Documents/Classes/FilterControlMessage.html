@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>FilterControlMessage Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/FilterControlMessage" class="dashAnchor"></a>
+    <a title="FilterControlMessage Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="https://github.com/PureMVC/puremvc-swift-util-pipes"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        FilterControlMessage Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+          <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/Filter.html">Filter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/FilterControlMessage.html">FilterControlMessage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Junction.html">Junction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JunctionMediator.html">JunctionMediator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Message.html">Message</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Pipe.html">Pipe</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PipeListener.html">PipeListener</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Queue.html">Queue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/QueueControlMessage.html">QueueControlMessage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TeeMerge.html">TeeMerge</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TeeSplit.html">TeeSplit</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+          <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/IPipeAware.html">IPipeAware</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IPipeFitting.html">IPipeFitting</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/IPipeMessage.html">IPipeMessage</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>FilterControlMessage</h1>
+            <p>Filter Control Message.</p>
+
+<p>A special message type for controlling the behavior of a Filter.</p>
+
+<p>The <code>FilterControlMessage.SET_PARAMS</code> message type tells the Filter 
+to retrieve the filter parameters object.</p>
+
+<p>The <code>FilterControlMessage.SET_FILTER</code> message type tells the Filter 
+to retrieve the filter function.</p>
+
+<p>The <code>FilterControlMessage.BYPASS</code> message type tells the Filter 
+that it should go into Bypass mode operation, passing all normal 
+messages through unfiltered.</p>
+
+<p>The <code>FilterControlMessage.FILTER</code> message type tells the Filter 
+that it should go into Filtering mode operation, filtering all 
+normal normal messages before writing out. This is the default 
+mode of operation and so this message type need only be sent to 
+cancel a previous <code>FilterControlMessage.BYPASS</code> message.</p>
+
+<p>The Filter only acts on a control message if it is targeted 
+to this named filter instance. Otherwise it writes the 
+message through to its output unchanged.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC5Pipes20FilterControlMessage4BASESS"></a>
+                    <a name="//apple_ref/swift/Variable/BASE" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC5Pipes20FilterControlMessage4BASESS">BASE</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Message type base URI</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">override</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">BASE</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">return</span> <span class="kt">Message</span><span class="o">.</span><span class="kt">BASE</span> <span class="o">+</span> <span class="s">"filter-control/"</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC5Pipes20FilterControlMessage10SET_PARAMSSS"></a>
+                    <a name="//apple_ref/swift/Variable/SET_PARAMS" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC5Pipes20FilterControlMessage10SET_PARAMSSS">SET_PARAMS</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set filter parameters.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">SET_PARAMS</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">return</span> <span class="kt">FilterControlMessage</span><span class="o">.</span><span class="kt">BASE</span> <span class="o">+</span> <span class="s">"setParams"</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC5Pipes20FilterControlMessage10SET_FILTERSS"></a>
+                    <a name="//apple_ref/swift/Variable/SET_FILTER" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC5Pipes20FilterControlMessage10SET_FILTERSS">SET_FILTER</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set filter function.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">SET_FILTER</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">return</span> <span class="kt">FilterControlMessage</span><span class="o">.</span><span class="kt">BASE</span> <span class="o">+</span> <span class="s">"setFilter"</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC5Pipes20FilterControlMessage6BYPASSSS"></a>
+                    <a name="//apple_ref/swift/Variable/BYPASS" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC5Pipes20FilterControlMessage6BYPASSSS">BYPASS</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Toggle to filter bypass mode.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">BYPASS</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">return</span> <span class="kt">FilterControlMessage</span><span class="o">.</span><span class="kt">BASE</span> <span class="o">+</span> <span class="s">"bypass"</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC5Pipes20FilterControlMessage6FILTERSS"></a>
+                    <a name="//apple_ref/swift/Variable/FILTER" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC5Pipes20FilterControlMessage6FILTERSS">FILTER</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Toggle to filtering mode. (default behavior).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">FILTER</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">return</span> <span class="kt">FilterControlMessage</span><span class="o">.</span><span class="kt">BASE</span> <span class="o">+</span> <span class="s">"filter"</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC5Pipes20FilterControlMessagecFMS0_FT4typeSS4nameSS6filterGSqFTPS_12IPipeMessage_GSqP___Sb_6paramsGSqP___S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(type:name:filter:params:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC5Pipes20FilterControlMessagecFMS0_FT4typeSS4nameSS6filterGSqFTPS_12IPipeMessage_GSqP___Sb_6paramsGSqP___S0_">init(type:name:filter:params:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Constructor</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">filter</span><span class="p">:</span> <span class="p">((</span><span class="kt">IPipeMessage</span><span class="p">,</span> <span class="kt">Any</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">)?</span><span class="o">=</span><span class="kc">nil</span><span class="p">,</span> <span class="nv">params</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?</span><span class="o">=</span><span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC5Pipes20FilterControlMessage4nameGSqSS_"></a>
+                    <a name="//apple_ref/swift/Property/name" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC5Pipes20FilterControlMessage4nameGSqSS_">name</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get or set the target filter name.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC5Pipes20FilterControlMessage6filterGSqFT7messagePS_12IPipeMessage_6paramsGSqP___Sb_"></a>
+                    <a name="//apple_ref/swift/Property/filter" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC5Pipes20FilterControlMessage6filterGSqFT7messagePS_12IPipeMessage_6paramsGSqP___Sb_">filter</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get or set the filter function.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">filter</span><span class="p">:</span> <span class="p">((</span><span class="nv">message</span><span class="p">:</span> <span class="kt">IPipeMessage</span><span class="p">,</span> <span class="nv">params</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">)?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC5Pipes20FilterControlMessage6paramsGSqP__"></a>
+                    <a name="//apple_ref/swift/Property/params" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC5Pipes20FilterControlMessage6paramsGSqP__">params</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get or set the parameters object.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">params</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-05-12)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.2.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

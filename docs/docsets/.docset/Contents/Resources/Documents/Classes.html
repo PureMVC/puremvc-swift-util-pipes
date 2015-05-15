@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Classes  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+  </head>
+  <body>
+    <a title="Classes  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html"> Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="https://github.com/PureMVC/puremvc-swift-util-pipes"><img src="img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html"> Reference</a>
+        <img id="carat" src="img/carat.png" />
+        Classes  Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+          <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/Filter.html">Filter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/FilterControlMessage.html">FilterControlMessage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Junction.html">Junction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/JunctionMediator.html">JunctionMediator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Message.html">Message</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Pipe.html">Pipe</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/PipeListener.html">PipeListener</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Queue.html">Queue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/QueueControlMessage.html">QueueControlMessage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/TeeMerge.html">TeeMerge</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/TeeSplit.html">TeeSplit</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+          <a href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Protocols/IPipeAware.html">IPipeAware</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/IPipeFitting.html">IPipeFitting</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/IPipeMessage.html">IPipeMessage</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Classes</h1>
+            <p>The following classes are available globally.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:C5Pipes6Filter"></a>
+                    <a name="//apple_ref/swift/Class/Filter" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C5Pipes6Filter">Filter</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Pipe Filter.</p>
+
+<p>Filters may modify the contents of messages before writing them to 
+their output pipe fitting. They may also have their parameters and 
+filter function passed to them by control message, as well as having 
+their Bypass/Filter operation mode toggled via control message.</p>
+
+                        <a href="Classes/Filter.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Filter</span><span class="p">:</span> <span class="kt">Pipe</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:C5Pipes12PipeListener"></a>
+                    <a name="//apple_ref/swift/Class/PipeListener" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C5Pipes12PipeListener">PipeListener</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Pipe Listener.</p>
+
+<p>Allows a class that does not implement <code>IPipeFitting</code> to
+be the final recipient of the messages in a pipeline.</p>
+
+<p><code>@see Junction</code></p>
+
+                        <a href="Classes/PipeListener.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">PipeListener</span><span class="p">:</span> <span class="kt">IPipeFitting</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:C5Pipes16JunctionMediator"></a>
+                    <a name="//apple_ref/swift/Class/JunctionMediator" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C5Pipes16JunctionMediator">JunctionMediator</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Junction Mediator.</p>
+
+<p>A base class for handling the Pipe Junction in an IPipeAware
+Core.</p>
+
+                        <a href="Classes/JunctionMediator.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">JunctionMediator</span><span class="p">:</span> <span class="kt">Mediator</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:C5Pipes4Pipe"></a>
+                    <a name="//apple_ref/swift/Class/Pipe" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C5Pipes4Pipe">Pipe</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Pipe.</p>
+
+<p>This is the most basic <code>IPipeFitting</code>, 
+simply allowing the connection of an output 
+fitting and writing of a message to that output.</p>
+
+                        <a href="Classes/Pipe.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Pipe</span><span class="p">:</span> <span class="kt">IPipeFitting</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:C5Pipes8TeeSplit"></a>
+                    <a name="//apple_ref/swift/Class/TeeSplit" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C5Pipes8TeeSplit">TeeSplit</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Splitting Pipe Tee.</p>
+
+<p>Writes input messages to multiple output pipe fittings.</p>
+
+                        <a href="Classes/TeeSplit.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">TeeSplit</span><span class="p">:</span> <span class="kt">IPipeFitting</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:C5Pipes20FilterControlMessage"></a>
+                    <a name="//apple_ref/swift/Class/FilterControlMessage" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C5Pipes20FilterControlMessage">FilterControlMessage</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Filter Control Message.</p>
+
+<p>A special message type for controlling the behavior of a Filter.</p>
+
+<p>The <code>FilterControlMessage.SET_PARAMS</code> message type tells the Filter 
+to retrieve the filter parameters object.</p>
+
+<p>The <code>FilterControlMessage.SET_FILTER</code> message type tells the Filter 
+to retrieve the filter function.</p>
+
+<p>The <code>FilterControlMessage.BYPASS</code> message type tells the Filter 
+that it should go into Bypass mode operation, passing all normal 
+messages through unfiltered.</p>
+
+<p>The <code>FilterControlMessage.FILTER</code> message type tells the Filter 
+that it should go into Filtering mode operation, filtering all 
+normal normal messages before writing out. This is the default 
+mode of operation and so this message type need only be sent to 
+cancel a previous <code>FilterControlMessage.BYPASS</code> message.</p>
+
+<p>The Filter only acts on a control message if it is targeted 
+to this named filter instance. Otherwise it writes the 
+message through to its output unchanged.</p>
+
+                        <a href="Classes/FilterControlMessage.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">FilterControlMessage</span><span class="p">:</span> <span class="kt">Message</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:C5Pipes8TeeMerge"></a>
+                    <a name="//apple_ref/swift/Class/TeeMerge" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C5Pipes8TeeMerge">TeeMerge</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Merging Pipe Tee.</p>
+
+<p>Writes the messages from multiple input pipelines into
+a single output pipe fitting.</p>
+
+                        <a href="Classes/TeeMerge.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">TeeMerge</span><span class="p">:</span> <span class="kt">Pipe</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:C5Pipes8Junction"></a>
+                    <a name="//apple_ref/swift/Class/Junction" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C5Pipes8Junction">Junction</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Pipe Junction.</p>
+
+<p>Manages Pipes for a Module.</p>
+
+<p>When you register a Pipe with a Junction, it is 
+declared as being an INPUT pipe or an OUTPUT pipe.</p>
+
+<p>You can retrieve or remove a registered Pipe by name, 
+check to see if a Pipe with a given name exists, or if 
+it exists AND is an INPUT or an OUTPUT Pipe.</p>
+
+<p>You can send an <code>IPipeMessage</code> on a named INPUT Pipe 
+or add a <code>PipeListener</code> to registered INPUT Pipe.</p>
+
+                        <a href="Classes/Junction.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Junction</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:C5Pipes5Queue"></a>
+                    <a name="//apple_ref/swift/Class/Queue" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C5Pipes5Queue">Queue</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Pipe Queue.</p>
+
+<p>The Queue always stores inbound messages until you send it
+a FLUSH control message, at which point it writes its buffer
+to the output pipe fitting. The Queue can be sent a SORT
+control message to go into sort-by-priority mode or a FIFO
+control message to cancel sort mode and return the
+default mode of operation, FIFO.</p>
+
+<p>NOTE: There can effectively be only one Queue on a given
+pipeline, since the first Queue acts on any queue control
+message. Multiple queues in one pipeline are of dubious
+use, and so having to name them would make their operation
+more complex than need be.</p>
+
+                        <a href="Classes/Queue.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Queue</span><span class="p">:</span> <span class="kt">Pipe</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:C5Pipes7Message"></a>
+                    <a name="//apple_ref/swift/Class/Message" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C5Pipes7Message">Message</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Pipe Message.</p>
+
+<p>Messages travelling through a Pipeline can 
+be filtered, and queued. In a queue, they may 
+be sorted by priority. Based on type, 
+they may used as control messages to modify the 
+behavior of filter or queue fittings connected 
+to the pipleline into which they are written.</p>
+
+                        <a href="Classes/Message.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Message</span><span class="p">:</span> <span class="kt">IPipeMessage</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:C5Pipes19QueueControlMessage"></a>
+                    <a name="//apple_ref/swift/Class/QueueControlMessage" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C5Pipes19QueueControlMessage">QueueControlMessage</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Queue Control Message.</p>
+
+<p>A special message for controlling the behavior of a Queue.</p>
+
+<p>When written to a pipeline containing a Queue, the type 
+of the message is interpreted and acted upon by the Queue.</p>
+
+<p>Unlike filters, multiple serially connected queues aren&rsquo;t 
+very useful and so they do not require a name. If multiple 
+queues are connected serially, the message will be acted 
+upon by the first queue only.</p>
+
+                        <a href="Classes/QueueControlMessage.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">QueueControlMessage</span><span class="p">:</span> <span class="kt">Message</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-05-12)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.2.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
