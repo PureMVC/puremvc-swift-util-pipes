@@ -3,6 +3,7 @@
 This utility provides the capability for creating pipelines that pass messages between Cores in a PureMVC MultiCore-based application. Pipelines can contain filters, queues, splitting and merging tees, and more. Unit Tests included. 
 
 * [API Docs](http://puremvc.org/pages/docs/Swift/Utility_Swift_Pipes/)
+* [Unit Tests](http://puremvc.github.io/images/Swift/unittest/pipes-multicore.png)
 * [Discussion](http://forums.puremvc.org/index.php?topic=2124.0)
 * [Pipes Overview Presentation](http://puremvc.tv/#P002/T220)
 
