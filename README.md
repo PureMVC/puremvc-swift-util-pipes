@@ -13,7 +13,7 @@ This utility provides the capability for creating pipelines that pass messages b
 * [Mac OS](http://en.wikipedia.org/wiki/Mac_OS)
 
 ## Status
-Production - [Version 1.0](https://github.com/PureMVC/puremvc-swift-util-pipes/blob/master/VERSION)
+Production - [Version 1.1](https://github.com/PureMVC/puremvc-swift-util-pipes/blob/master/VERSION)
 
 ## License
 * PureMVC Swift MultiCore Utility – Pipes - Copyright © 2015-2025 Saad Shams
