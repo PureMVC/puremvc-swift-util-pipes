@@ -45,13 +45,13 @@ class JunctionTest: XCTestCase {
     */
     func testRegisterRetrieveAndRemoveInputPipe() {
         // create pipe connected to this test with a pipelistener
-        var pipe: IPipeFitting = Pipe()
+        let pipe: IPipeFitting = Pipe()
         
         // create junction
-        var junction = Junction()
+        let junction = Junction()
         
         // register the pipe with the junction, giving it a name and direction
-        var registered = junction.registerPipe("testInputPipe", type: Junction.INPUT, pipe: pipe)
+        let registered = junction.registerPipe("testInputPipe", type: Junction.INPUT, pipe: pipe)
         
         // test assertions
         XCTAssertNotNil(pipe is Pipe, "Expecting pipe is Pipe")
@@ -83,13 +83,13 @@ class JunctionTest: XCTestCase {
  		 */
     func testRegisterRetrieveAndRemoveOutputPipe() {
         // create pipe connected to this test with a pipelistener
-        var pipe: IPipeFitting = Pipe()
+        let pipe: IPipeFitting = Pipe()
         
         // create junction
-        var junction = Junction()
+        let junction = Junction()
         
         // register the pipe with the junction, giving it a name and direction
-        var registered = junction.registerPipe("testOutputPipe", type: Junction.OUTPUT, pipe: pipe)
+        let registered = junction.registerPipe("testOutputPipe", type: Junction.OUTPUT, pipe: pipe)
         
         // test assertions
         XCTAssertNotNil(pipe is Pipe, "Expecting pipe is Pipe")
@@ -119,23 +119,23 @@ class JunctionTest: XCTestCase {
     */
     func testAddingPipeListenerToAnInputPipe() {
         // create pipe
-        var pipe: IPipeFitting = Pipe()
+        let pipe: IPipeFitting = Pipe()
         
         // create junction
-        var junction: Junction = Junction()
+        let junction: Junction = Junction()
         
         // create test message
-        var message: IPipeMessage = Message(type: Message.NORMAL, body: ["testVal" : 1])
+        let message: IPipeMessage = Message(type: Message.NORMAL, body: ["testVal" : 1])
         
         // register the pipe with the junction, giving it a name and direction
-        var registered = junction.registerPipe("testInputPipe", type: Junction.INPUT, pipe: pipe)
+        let registered = junction.registerPipe("testInputPipe", type: Junction.INPUT, pipe: pipe)
         
         // add the pipelistener using the junction method
-        var listenerAdded = junction.addPipeListener("testInputPipe", context: self, listener: self.callBackMethod)
+        let listenerAdded = junction.addPipeListener("testInputPipe", context: self, listener: self.callBackMethod)
         
         // send the message using our reference to the pipe,
         // it should show up in messageReceived property via the pipeListener
-        var sent: Bool = pipe.write(message)
+        let sent: Bool = pipe.write(message)
         
         // test assertions
         XCTAssertNotNil(pipe is Pipe, "Expecting pipe is Pipe")
@@ -158,23 +158,23 @@ class JunctionTest: XCTestCase {
     */
     func testSendMessageOnAnOutputPipe() {
         // create pipe
-        var pipe: IPipeFitting = Pipe()
+        let pipe: IPipeFitting = Pipe()
         
         // add a PipeListener manually
-        var listenerAdded = pipe.connect(PipeListener(context: self, listener: self.callBackMethod))
+        let listenerAdded = pipe.connect(PipeListener(context: self, listener: self.callBackMethod))
         
         // create junction
-        var junction = Junction()
+        let junction = Junction()
         
         // create test message
-        var message: IPipeMessage = Message(type: Message.NORMAL, body: ["testVal": 1])
+        let message: IPipeMessage = Message(type: Message.NORMAL, body: ["testVal": 1])
         
         // register the pipe with the junction, giving it a name and direction
-        var registered = junction.registerPipe("testOutputPipe", type: Junction.OUTPUT, pipe: pipe)
+        let registered = junction.registerPipe("testOutputPipe", type: Junction.OUTPUT, pipe: pipe)
         
         // send the message using the Junction's method
         // it should show up in messageReceived property via the pipeListener
-        var sent: Bool  = junction.sendMessage("testOutputPipe", message: message)
+        let sent: Bool  = junction.sendMessage("testOutputPipe", message: message)
         
         // test assertions
         XCTAssertNotNil(pipe as! Pipe, "Expecting pipe is Pipe")

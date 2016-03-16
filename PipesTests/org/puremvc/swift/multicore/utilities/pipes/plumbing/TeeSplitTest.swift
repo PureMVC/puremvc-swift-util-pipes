@@ -41,23 +41,23 @@ class TeeSplitTest: XCTestCase {
     */
     func testConnectingAndDisconnectingIOPipes() {
         // create input pipe
-        var input1: IPipeFitting = Pipe()
+        let input1: IPipeFitting = Pipe()
         
         // create output pipes 1, 2, 3 and 4
-        var pipe1: IPipeFitting = Pipe()
-        var pipe2: IPipeFitting = Pipe()
-        var pipe3: IPipeFitting = Pipe()
-        var pipe4: IPipeFitting = Pipe()
+        let pipe1: IPipeFitting = Pipe()
+        let pipe2: IPipeFitting = Pipe()
+        let pipe3: IPipeFitting = Pipe()
+        let pipe4: IPipeFitting = Pipe()
         
         // create splitting tee (args are first two output fittings of tee)
-        var teeSplit: TeeSplit = TeeSplit(output1: pipe1, output2: pipe2)
+        let teeSplit: TeeSplit = TeeSplit(output1: pipe1, output2: pipe2)
         
         // connect 2 extra outputs for a total of 4
-        var connectedExtra1 = teeSplit.connect(pipe3)
-        var connectedExtra2 = teeSplit.connect(pipe4)
+        let connectedExtra1 = teeSplit.connect(pipe3)
+        let connectedExtra2 = teeSplit.connect(pipe4)
         
         // connect the single input
-        var inputConnect = input1.connect(teeSplit)
+        _ = input1.connect(teeSplit)
         
         // test assertions
         XCTAssertNotNil(pipe1 as! Pipe, "Expecting pipe1 as Pipe")
@@ -91,14 +91,11 @@ class TeeSplitTest: XCTestCase {
     func testDisconnectFitting() {
         messagesReceived = []
         
-        // create input pipe
-        var input1: IPipeFitting = Pipe()
-        
         // create output pipes 1, 2, 3 and 4
-        var pipe1: IPipeFitting = Pipe()
-        var pipe2: IPipeFitting = Pipe()
-        var pipe3: IPipeFitting = Pipe()
-        var pipe4: IPipeFitting = Pipe()
+        let pipe1: IPipeFitting = Pipe()
+        let pipe2: IPipeFitting = Pipe()
+        let pipe3: IPipeFitting = Pipe()
+        let pipe4: IPipeFitting = Pipe()
         
         // setup pipelisteners
         pipe1.connect(PipeListener(context: self, listener: self.callBackMethod))
@@ -107,7 +104,7 @@ class TeeSplitTest: XCTestCase {
         pipe4.connect(PipeListener(context: self, listener: self.callBackMethod))
         
         // create splitting tee
-        var teeSplit = TeeSplit()
+        let teeSplit = TeeSplit()
         
         // add outputs
         teeSplit.connect(pipe1)
@@ -133,21 +130,21 @@ class TeeSplitTest: XCTestCase {
         messagesReceived = []
         
         // create a message to send on pipe 1
-        var message: IPipeMessage = Message(type: Message.NORMAL, body: ["testProp": 1])
+        let message: IPipeMessage = Message(type: Message.NORMAL, body: ["testProp": 1])
         
         // create output pipes 1 and 2
-        var pipe1: IPipeFitting = Pipe()
-        var pipe2: IPipeFitting = Pipe()
+        let pipe1: IPipeFitting = Pipe()
+        let pipe2: IPipeFitting = Pipe()
         
         // create and connect anonymous listeners
-        var connected1 = pipe1.connect(PipeListener(context: self, listener: self.callBackMethod))
-        var connected2 = pipe2.connect((PipeListener(context: self, listener: self.callBackMethod)))
+        let connected1 = pipe1.connect(PipeListener(context: self, listener: self.callBackMethod))
+        let connected2 = pipe2.connect((PipeListener(context: self, listener: self.callBackMethod)))
         
         // create splitting tee (args are first two output fittings of tee)
-        var teeSplit = TeeSplit(output1: pipe1, output2: pipe2)
+        let teeSplit = TeeSplit(output1: pipe1, output2: pipe2)
         
         // write messages to their respective pipes
-        var written = teeSplit.write(message)
+        let written = teeSplit.write(message)
         
         // test assertions
         XCTAssertNotNil(message is Message, "message is not nil")
@@ -163,12 +160,12 @@ class TeeSplitTest: XCTestCase {
         XCTAssertTrue(messagesReceived.count == 2, "Expecting received 2 messages")
         
         // test message 1 assertions
-        var message1: IPipeMessage = messagesReceived.removeAtIndex(0)
+        let message1: IPipeMessage = messagesReceived.removeAtIndex(0)
         XCTAssertNotNil(message1 as! Message, "message1 not nil")
         XCTAssertTrue(message1 as! Message === message as! Message, "Expecting message1 === message")
         
         // test message 2 assertions
-        var message2: IPipeMessage = messagesReceived.removeAtIndex(0)
+        let message2: IPipeMessage = messagesReceived.removeAtIndex(0)
         XCTAssertNotNil(message2 as? Message, "Expecting message2 is not nil")
         XCTAssertTrue(message2 as! Message === message as! Message, "Expecting message2 === message")
     }

@@ -63,11 +63,11 @@ public class Junction {
     pipe registered with the same name. All pipe names 
     must be unique regardless of type.
     
-    :param: name name of the Pipe Fitting
-    :param: type input or output
-    :param: pipe instance of the `IPipeFitting`
+    - parameter name: name of the Pipe Fitting
+    - parameter type: input or output
+    - parameter pipe: instance of the `IPipeFitting`
     
-    :returns: Bool true if successfully registered. false if another pipe exists by that name.
+    - returns: Bool true if successfully registered. false if another pipe exists by that name.
     */
     public func registerPipe(name: String, type: String, pipe: IPipeFitting) -> Bool {
         var success = true
@@ -95,8 +95,8 @@ public class Junction {
     /**
     Does this junction have a pipe by this name?
     
-    :param: name the pipe to check for
-    :returns: Bool whether as pipe is registered with that name.
+    - parameter name: the pipe to check for
+    - returns: Bool whether as pipe is registered with that name.
     */
     public func hasPipe(name: String) -> Bool {
         var result = false
@@ -109,8 +109,8 @@ public class Junction {
     /**
     Does this junction have an INPUT pipe by this name?
     
-    :param: name the pipe to check for
-    :returns: Bool whether an INPUT pipe is registered with that name.
+    - parameter name: the pipe to check for
+    - returns: Bool whether an INPUT pipe is registered with that name.
     */
     public func hasInputPipe(name: String) -> Bool {
         var result = false
@@ -123,8 +123,8 @@ public class Junction {
     /**
     Does this junction have an OUTPUT pipe by this name?
     
-    :param: name the pipe to check for
-    :returns: Bool whether an OUTPUT pipe is registered with that name.
+    - parameter name: the pipe to check for
+    - returns: Bool whether an OUTPUT pipe is registered with that name.
     */
     public func hasOutputPipe(name: String) -> Bool {
         var result = false
@@ -141,7 +141,7 @@ public class Junction {
     pipe registered with the same name. All pipe names 
     must be unique regardless of type.
     
-    :param: name the pipe to remove
+    - parameter name: the pipe to remove
     */
     public func removePipe(name: String) {
         if self.hasPipe(name) {
@@ -157,7 +157,7 @@ public class Junction {
                         return
                     }
                     
-                    for (index, _) in enumerate(pipesList) {
+                    for (index, _) in pipesList.enumerate() {
                         if pipesList[index] == name {
                             pipesList.removeAtIndex(index)
                             break
@@ -174,8 +174,8 @@ public class Junction {
     /**
     Retrieve the named pipe.
     
-    :param: name the pipe to retrieve
-    :returns: IPipeFitting the pipe registered by the given name if it exists
+    - parameter name: the pipe to retrieve
+    - returns: IPipeFitting the pipe registered by the given name if it exists
     */
     public func retrievePipe(name: String) -> IPipeFitting? {
         var pipe: IPipeFitting?
@@ -190,15 +190,15 @@ public class Junction {
     
     NOTE: there can only be one PipeListener per pipe, and the listener function must accept an IPipeMessage as its sole argument.
     
-    :param: inputPipeName the INPUT pipe to add a PipeListener to
-    :param: context the calling context or 'this' object
-    :param: listener the function on the context to call
+    - parameter inputPipeName: the INPUT pipe to add a PipeListener to
+    - parameter context: the calling context or 'this' object
+    - parameter listener: the function on the context to call
     */
     public func addPipeListener(inputPipeName: String, context: AnyObject, listener: IPipeMessage -> ()) -> Bool {
         var success = false
         dispatch_sync(pipesMapQueue) {
             if self.hasInputPipe(inputPipeName) {
-                var pipe = self.pipesMap[inputPipeName]!
+                let pipe = self.pipesMap[inputPipeName]!
                 success = pipe.connect(PipeListener(context: context, listener: listener))
             }
         }
@@ -208,14 +208,14 @@ public class Junction {
     /**
     Send a message on an OUTPUT pipe.
     
-    :param: outputPipeName the OUTPUT pipe to send the message on
-    :param: message the IPipeMessage to send
+    - parameter outputPipeName: the OUTPUT pipe to send the message on
+    - parameter message: the IPipeMessage to send
     */
     public func sendMessage(outputPipeName: String, message: IPipeMessage) -> Bool { //read
         var success = false
         dispatch_sync(pipesMapQueue) {
             if self.hasOutputPipe(outputPipeName) {
-                var pipe = self.pipesMap[outputPipeName]!
+                let pipe = self.pipesMap[outputPipeName]!
                 success = pipe.write(message)
             }
         }

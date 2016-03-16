@@ -37,17 +37,19 @@ class FilterTest: XCTestCase {
     */
     func testConnectingAndDisconnectingIOPipes() {
         // create output pipes 1
-        var pipe1: IPipeFitting = Pipe()
-        var pipe2: IPipeFitting = Pipe()
+        let pipe1: IPipeFitting = Pipe()
+        let pipe2: IPipeFitting = Pipe()
         
-        // create filter
-        var filter: Filter = Filter(name: "TestFilter")
+        //create filter
+        let filter: Filter = Filter(name: "TestFilter")
         
         // connect input fitting
-        var connectInput = pipe1.connect(filter)
+        let connectInput = pipe1.connect(filter)
+        
+        XCTAssertTrue(connectInput, "Expecting pipe to be connected")
         
         // connect output fitting
-        var connectedOutput = filter.connect(pipe2)
+        let connectedOutput = filter.connect(pipe2)
         
         // test assertions
         XCTAssertNotNil(pipe1 as! Pipe, "Expecting pipe1 is not nil")
@@ -57,7 +59,7 @@ class FilterTest: XCTestCase {
         XCTAssertTrue(connectedOutput, "Expecting connected output")
         
         // disconnect pipe 2 from filter
-        var disconnectedPipe = filter.disconnect()
+        let disconnectedPipe = filter.disconnect()
         XCTAssertTrue(disconnectedPipe as! Pipe === pipe2 as! Pipe, "Expecting disconnected pipe2 from filter")
     }
     
@@ -66,13 +68,13 @@ class FilterTest: XCTestCase {
     */
     func testFilteringNormalMessage() {
         // create messages to send to the queue
-        var message: IPipeMessage = Message(type: Message.NORMAL, header: ["width": 10, "height": 2])
+        let message: IPipeMessage = Message(type: Message.NORMAL, header: ["width": 10, "height": 2])
         
         // create filter, attach an anonymous listener to the filter output to receive the message,
         // pass in an anonymous function an parameter object
-        var filter = Filter(name: "scale", output: PipeListener(context: self, listener: self.callBackMethod),
+        let filter = Filter(name: "scale", output: PipeListener(context: self, listener: self.callBackMethod),
             filter: { (var message: IPipeMessage, params: Any?) -> Bool in
-                var factor = (params as! [String: Int])["factor"]
+                let factor = (params as! [String: Int])["factor"]
             
                 var header = message.header as! [String: Int]
                 header.updateValue(header["width"]! * factor!, forKey: "width")
@@ -85,7 +87,7 @@ class FilterTest: XCTestCase {
             params: ["factor": 10])
         
         // write messages to the filter
-        var written = filter.write(message)
+        let written = filter.write(message)
         
         // test assertions
         XCTAssertNotNil(message as! Message, "Expecting message is Message")
@@ -94,7 +96,7 @@ class FilterTest: XCTestCase {
         XCTAssertTrue(messagesReceived.count == 1, "Expecting received 1 messages")
         
         // test filtered message assertions
-        var received = messagesReceived.removeAtIndex(0)
+        let received = messagesReceived.removeAtIndex(0)
         XCTAssertNotNil(received as! Message, "received is not nil")
         XCTAssertTrue(received as! Message === message as! Message, "received === message")
         XCTAssertTrue((received.header as! [String: Int])["width"] == 100, "Expecting received.header['width'] == 100")
@@ -106,13 +108,13 @@ class FilterTest: XCTestCase {
     */
     func testBypassAndFilterModeToggle() {
         // create messages to send to the queue
-        var message: IPipeMessage = Message(type: Message.NORMAL, header: ["width": 10, "height": 2])
+        let message: IPipeMessage = Message(type: Message.NORMAL, header: ["width": 10, "height": 2])
         
         // create filter, attach an anonymous listener to the filter output to receive the message,
         // pass in an anonymous function an parameter object
-        var filter = Filter(name: "scale", output: PipeListener(context: self, listener: self.callBackMethod),
+        let filter = Filter(name: "scale", output: PipeListener(context: self, listener: self.callBackMethod),
             filter: { (var message: IPipeMessage, params: Any?) -> Bool in
-                var factor = (params as! [String: Int])["factor"]
+                let factor = (params as! [String: Int])["factor"]
                 var header = message.header as! [String: Int]
                 header.updateValue(header["width"]! * factor!, forKey: "width")
                 header.updateValue(header["height"]! * factor!, forKey: "height")
@@ -122,13 +124,13 @@ class FilterTest: XCTestCase {
             params: ["factor": 10])
         
         // create bypass control message
-        var bypassMessage: FilterControlMessage = FilterControlMessage(type: FilterControlMessage.BYPASS, name: "scale")
+        let bypassMessage: FilterControlMessage = FilterControlMessage(type: FilterControlMessage.BYPASS, name: "scale")
         
         // write bypass control message to the filter
-        var bypassWritten = filter.write(bypassMessage)
+        let bypassWritten = filter.write(bypassMessage)
         
         // write normal message to the filter
-        var written1 = filter.write(message)
+        let written1 = filter.write(message)
         
         // test assertions
         XCTAssertNotNil(message as! Message, "Expecting message is Message")
@@ -145,13 +147,13 @@ class FilterTest: XCTestCase {
         XCTAssertTrue((received1.header as! [String: Int])["height"] == 2, "Expecting received1.header['height'] == 2")
         
         // create filter control message
-        var filterMessage = FilterControlMessage(type: FilterControlMessage.FILTER, name: "scale")
+        let filterMessage = FilterControlMessage(type: FilterControlMessage.FILTER, name: "scale")
         
         // write bypass control message to the filter
-        var filterWritten = filter.write(filterMessage)
+        let filterWritten = filter.write(filterMessage)
         
-        // write normal message to the filter again
-        var written2 = filter.write(message)
+        //let write normal message to the filter again
+        let written2 = filter.write(message)
         
         // test assertions
         XCTAssertTrue(filterWritten, "Expecting wrote filter message to filter")
@@ -171,14 +173,14 @@ class FilterTest: XCTestCase {
     */
     func testSetParamsByControlMessage() {
         // create messages to send to the queue
-        var message = Message(type: Message.NORMAL, header: ["width": 10, "height": 2])
+        let message = Message(type: Message.NORMAL, header: ["width": 10, "height": 2])
         
         // create filter, attach an anonymous listener to the filter output to receive the message,
         // pass in an anonymous function an parameter object
-        var filter = Filter(name: "scale", output: PipeListener(context: self, listener: self.callBackMethod),
+        let filter = Filter(name: "scale", output: PipeListener(context: self, listener: self.callBackMethod),
             filter: { (var message: IPipeMessage, params: Any?) in
                 var header = message.header as! [String: Int]
-                var factor = (params as! [String: Int])["factor"]
+                let factor = (params as! [String: Int])["factor"]
                 header["width"]  = header["width"]! * factor!
                 header["height"] = header["height"]! * factor!
                 message.header = header
@@ -187,13 +189,13 @@ class FilterTest: XCTestCase {
             params: ["factor": 10])
         
         // create setParams control message
-        var setParamsMessage = FilterControlMessage(type: FilterControlMessage.SET_PARAMS, name: "scale", filter: nil, params: ["factor": 5])
+        let setParamsMessage = FilterControlMessage(type: FilterControlMessage.SET_PARAMS, name: "scale", filter: nil, params: ["factor": 5])
         
         // write filter control message to the filter
-        var setParamsWritten = filter.write(setParamsMessage)
+        let setParamsWritten = filter.write(setParamsMessage)
         
         // write normal message to the filter
-        var written = filter.write(message)
+        let written = filter.write(message)
         
         // test assertions
         XCTAssertNotNil(message as Message, "Expecting message is Message")
@@ -215,14 +217,14 @@ class FilterTest: XCTestCase {
     */
     func testSetFilterByControlMessage() {
         // create messages to send to the queue
-        var message = Message(type: Message.NORMAL, header: ["width": 10, "height": 2])
+        let message = Message(type: Message.NORMAL, header: ["width": 10, "height": 2])
         
         // create filter, attach an anonymous listener to the filter output to receive the message,
         // pass in an anonymous function and an anonymous parameter object
-        var filter = Filter(name: "scale", output: PipeListener(context: self, listener: self.callBackMethod),
+        let filter = Filter(name: "scale", output: PipeListener(context: self, listener: self.callBackMethod),
             filter: { (var message: IPipeMessage, params: Any?) -> Bool in
                 var header = message.header as! [String: Int]
-                var factor = (params as! [String: Int])["factor"]
+                let factor = (params as! [String: Int])["factor"]
                 header.updateValue(header["width"]! * factor!, forKey: "width")
                 header.updateValue(header["height"]! * factor!, forKey: "height")
                 message.header = header
@@ -230,10 +232,10 @@ class FilterTest: XCTestCase {
         }, params: ["factor": 10])
         
         // create setFilter control message
-        var setFilterMessage = FilterControlMessage(type: FilterControlMessage.SET_FILTER, name: "scale",
+        let setFilterMessage = FilterControlMessage(type: FilterControlMessage.SET_FILTER, name: "scale",
             filter: { (var message: IPipeMessage, params: Any?) -> Bool in
                 var header = message.header as! [String: Int]
-                var factor = (params as! [String: Int])["factor"]
+                let factor = (params as! [String: Int])["factor"]
                 header.updateValue(header["width"]! / factor!, forKey: "width")
                 header.updateValue(header["height"]! / factor!, forKey: "height")
                 message.header = header
@@ -242,10 +244,10 @@ class FilterTest: XCTestCase {
             params: nil)
         
         // write filter control message to the filter
-        var setFilterWritten = filter.write(setFilterMessage)
+        let setFilterWritten = filter.write(setFilterMessage)
         
         // write normal message to the filter
-        var written = filter.write(message)
+        let written = filter.write(message)
         
         // test assertions
         XCTAssertNotNil(message as Message, "Expecing message is Message")
@@ -284,22 +286,22 @@ class FilterTest: XCTestCase {
     */
     func testUseFilterToStopAMessage() {
         // create messages to send to the queue
-        var message1 = Message(type: Message.NORMAL, header: ["bozoLevel": 10, "user": 1])
-        var message2 = Message(type: Message.NORMAL, header: ["bozoLevel": 3, "user": 2])
+        let message1 = Message(type: Message.NORMAL, header: ["bozoLevel": 10, "user": 1])
+        let message2 = Message(type: Message.NORMAL, header: ["bozoLevel": 3, "user": 2])
         
         // create filter, attach an anonymous listener to the filter output to receive the message,
         // pass in an anonymous function and an anonymous parameter object
-        var filter = Filter(name: "bozoFilter", output: PipeListener(context: self, listener: self.callBackMethod),
+        let filter = Filter(name: "bozoFilter", output: PipeListener(context: self, listener: self.callBackMethod),
             filter: { (message: IPipeMessage, params: Any?) -> Bool in
                 var header = message.header as! [String: Int]
-                var bozoThreshold = (params as! [String: Int])["bozoThreshold"]
+                let bozoThreshold = (params as! [String: Int])["bozoThreshold"]
                 return header["bozoLevel"]! > bozoThreshold ? false : true
             },
             params: ["bozoThreshold": 5])
         
         // write normal message to the filter
-        var written1 = filter.write(message1)
-        var written2 = filter.write(message2)
+        let written1 = filter.write(message1)
+        let written2 = filter.write(message2)
         
         // test assertions
         XCTAssertNotNil(message1 as Message, "Expecting message is Message")
@@ -310,7 +312,7 @@ class FilterTest: XCTestCase {
         XCTAssertTrue(messagesReceived.count == 1, "Expecting received 1 messages")
         
         // test filtered message assertions (message with good auth token passed
-        var received = messagesReceived.removeAtIndex(0) as IPipeMessage
+        let received = messagesReceived.removeAtIndex(0) as IPipeMessage
         XCTAssertNotNil(received as! Message, "Expecting received is Message") // object equality
         XCTAssertTrue(received as! Message === message2 as Message, "Expecting received === message2")
     }

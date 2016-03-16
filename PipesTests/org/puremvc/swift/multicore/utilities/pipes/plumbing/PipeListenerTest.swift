@@ -33,11 +33,11 @@ class PipeListenerTest: XCTestCase, NSXMLParserDelegate {
     */
     func testConnectingToAPipe() {
         // create pipe and listener
-        var pipe = Pipe()
-        var listener = PipeListener(context: self, listener: callBackMethod)
+        let pipe = Pipe()
+        let listener = PipeListener(context: self, listener: callBackMethod)
         
         // connect the listener to the pipe
-        var success = pipe.connect(listener)
+        let success = pipe.connect(listener)
         
         //test assertions
         XCTAssertNotNil(pipe as Pipe, "Expecting pipe as Pipe")
@@ -48,18 +48,18 @@ class PipeListenerTest: XCTestCase, NSXMLParserDelegate {
     Test receiving a message from a pipe using a PipeListener.
     */
     func testReceiveMessageViaPipeListener() {
-        var data: NSData = "<testMessage testAtt='Hello'/>".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) as NSData!
+        let data: NSData = "<testMessage testAtt='Hello'/>".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) as NSData!
         
         // create a message
-        var messageToSend: IPipeMessage = Message(type: Message.NORMAL, header: ["testProp" : "testval"], body: data, priority: Message.PRIORITY_HIGH)
+        let messageToSend: IPipeMessage = Message(type: Message.NORMAL, header: ["testProp" : "testval"], body: data, priority: Message.PRIORITY_HIGH)
         
         // create pipe and listener
-        var pipe: IPipeFitting = Pipe()
-        var listener: PipeListener = PipeListener(context: self, listener: self.callBackMethod)
+        let pipe: IPipeFitting = Pipe()
+        let listener: PipeListener = PipeListener(context: self, listener: self.callBackMethod)
         
         // connect the listener to the pipe and write the message
-        var connected: Bool = pipe.connect(listener)
-        var written: Bool = pipe.write(messageToSend)
+        let connected: Bool = pipe.connect(listener)
+        let written: Bool = pipe.write(messageToSend)
         
         // test assertions
         XCTAssertNotNil(pipe as! Pipe, "Expecting pipe as Pipe")
@@ -70,7 +70,7 @@ class PipeListenerTest: XCTestCase, NSXMLParserDelegate {
         XCTAssertTrue((messageReceived!.header as! Dictionary)["testProp"] == "testval", "Expecting messageReceived.header.testProp == 'testval'")
         XCTAssertTrue(messageReceived!.body as! NSData == data, "Expecting messageReceived!.body == data")
         
-        var xmlParser = NSXMLParser(data: messageReceived!.body as! NSData)
+        let xmlParser = NSXMLParser(data: messageReceived!.body as! NSData)
         xmlParser.delegate = self
         xmlParser.parse()
         
@@ -79,9 +79,9 @@ class PipeListenerTest: XCTestCase, NSXMLParserDelegate {
     }
     
     //xml parsing routine
-    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject]) {
+    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         self.elementName = elementName
-        self.testAtt = attributeDict["testAtt"] as? String
+        self.testAtt = attributeDict["testAtt"]
     }
     
     func callBackMethod(message: IPipeMessage) {

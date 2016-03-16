@@ -28,7 +28,7 @@ class PipeTest: XCTestCase {
     * Test the constructor.
     */
     func testConstructor() {
-        var pipe = Pipe()
+        let pipe = Pipe()
         
         // test assertions
         XCTAssertNotNil(pipe, "Expecting pipe is not nil")
@@ -39,10 +39,10 @@ class PipeTest: XCTestCase {
     */
     func testConnectingAndDisconnectingTwoPipes() {
         // create two pipes
-        var pipe1: IPipeFitting = Pipe()
-        var pipe2: IPipeFitting = Pipe()
+        let pipe1: IPipeFitting = Pipe()
+        let pipe2: IPipeFitting = Pipe()
         // connect them
-        var success = pipe1.connect(pipe2)
+        let success = pipe1.connect(pipe2)
         
         // test assertions
         XCTAssertNotNil(pipe1 as! Pipe, "Expecting pipe1 is Pipe")
@@ -50,7 +50,7 @@ class PipeTest: XCTestCase {
         XCTAssertNotNil(success, "Expecting connected pipe1 to pipe2")
         
         // disconnect pipe 2 from pipe 1
-        var disconnectedPipe: IPipeFitting = pipe1.disconnect()!
+        let disconnectedPipe: IPipeFitting = pipe1.disconnect()!
         XCTAssertTrue(disconnectedPipe as! Pipe === pipe2 as! Pipe, "Expecting disconnected pipe2 from pipe1")
     }
     
@@ -59,12 +59,12 @@ class PipeTest: XCTestCase {
     */
     func testConnectingToAConnectedPipe() {
         // create three pipes
-        var pipe1: IPipeFitting = Pipe()
-        var pipe2: IPipeFitting = Pipe()
-        var pipe3: IPipeFitting = Pipe()
+        let pipe1: IPipeFitting = Pipe()
+        let pipe2: IPipeFitting = Pipe()
+        let pipe3: IPipeFitting = Pipe()
         
         // connect them
-        var success: Bool = pipe1.connect(pipe2)
+        let success: Bool = pipe1.connect(pipe2)
         
         // test assertions
         XCTAssertTrue(success, "Expecting connected pipe1 to pipe2")
@@ -72,7 +72,7 @@ class PipeTest: XCTestCase {
     }
     
     func testWriteEmptyPipe() {
-        var pipe = Pipe()
+        let pipe = Pipe()
         pipe.write(Message(type: "Nil", header: nil, body: nil, priority: 0)) //shouldn't crash the program
     }
 

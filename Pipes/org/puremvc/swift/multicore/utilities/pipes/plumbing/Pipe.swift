@@ -19,8 +19,8 @@ public class Pipe: IPipeFitting {
     
     /// Constructor.
     public init(output: IPipeFitting?=nil) {
-        if(output != nil) {
-            self.connect(output!)
+        if let output = output {
+            self.connect(output)
         }
     }
     
@@ -30,12 +30,13 @@ public class Pipe: IPipeFitting {
     PipeFittings connect to and write to other 
     PipeFittings in a one-way, syncrhonous chain.
     
-    :returns: Bool true if no other fitting was already connected.
+    - parameter output: `IPipeFitting` the output fitting to connect.
+    - returns: Bool true if no other fitting was already connected.
     */
     public func connect(output: IPipeFitting) -> Bool {
         var success = false
         
-        if(self.output == nil) {
+        if self.output == nil {
             self.output = output
             success = true
         }
@@ -52,7 +53,7 @@ public class Pipe: IPipeFitting {
     connect them to the input and output of whatever 
     fiting that you're splicing in.
 
-    :returns: IPipeFitting the now disconnected output fitting
+    - returns: IPipeFitting the now disconnected output fitting
     */
     public func disconnect() -> IPipeFitting? {
         if let disconnectedFitting = self.output {
@@ -65,12 +66,12 @@ public class Pipe: IPipeFitting {
     /**
     Write the message to the connected output.
     
-    :param: message the message to write
-    :returns: Bool whether any connected downpipe outputs failed
+    - parameter message: the message to write
+    - returns: Bool whether any connected downpipe outputs failed
     */
     public func write(message: IPipeMessage) -> Bool {
-        if output != nil {
-            output!.write(message)
+        if let output = output {
+            output.write(message)
             return true
         } else {
             return false
