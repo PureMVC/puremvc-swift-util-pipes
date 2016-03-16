@@ -39,7 +39,7 @@ public class TeeSplit: IPipeFitting {
     NOTE: You can connect as many outputs as you want
     by calling this method repeatedly.
     
-    :param: output the IPipeFitting to connect for output.
+    - parameter output: the IPipeFitting to connect for output.
     */
     public func connect(output: IPipeFitting) -> Bool {
         dispatch_barrier_sync(outputsQueue) {
@@ -54,7 +54,7 @@ public class TeeSplit: IPipeFitting {
     To disconnect all outputs, you must call this
     method repeatedly untill it returns nil.
     
-    :param: output the IPipeFitting to connect for output.
+    - parameter output: the IPipeFitting to connect for output.
     */
     public func disconnect() -> IPipeFitting? {
         var pipe: IPipeFitting?
@@ -75,13 +75,13 @@ public class TeeSplit: IPipeFitting {
     output of this `TeeSplit`, then `nil`
     is returned.
     
-    :param: output the IPipeFitting to connect for output.
+    - parameter output: the IPipeFitting to connect for output.
     */
     public func disconnectFitting(target: IPipeFitting) -> IPipeFitting? {
         var removed: IPipeFitting?
         dispatch_barrier_sync(outputsQueue) {
-            for (index, _) in enumerate(self.outputs) {
-                var output = self.outputs[index]
+            for (index, _) in self.outputs.enumerate() {
+                let output = self.outputs[index]
                 if output as! Pipe === target as! Pipe {
                     self.outputs.removeAtIndex(index)
                     removed = output
@@ -97,8 +97,8 @@ public class TeeSplit: IPipeFitting {
     Returns false if any output returns false,
     but all outputs are written to regardless.
     
-    :param: message the message to write
-    :returns: Boolean whether any connected outputs failed
+    - parameter message: the message to write
+    - returns: Boolean whether any connected outputs failed
     */
     public func write(message: IPipeMessage) -> Bool {
         var success = true

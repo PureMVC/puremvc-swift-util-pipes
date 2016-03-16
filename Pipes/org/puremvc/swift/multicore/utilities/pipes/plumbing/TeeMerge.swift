@@ -38,7 +38,7 @@ public class TeeMerge: Pipe {
     NOTE: You can connect as many inputs as you want
     by calling this method repeatedly.
     
-    :param: input the IPipeFitting to connect for input.
+    - parameter input: the IPipeFitting to connect for input.
     */
     public func connectInput(input: IPipeFitting) -> Bool {
         return input.connect(self)

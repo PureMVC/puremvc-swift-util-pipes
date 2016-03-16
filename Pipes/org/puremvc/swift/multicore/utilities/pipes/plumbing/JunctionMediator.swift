@@ -59,17 +59,17 @@ public class JunctionMediator: Mediator {
         // register the pipe and if successful
         // set this mediator as its listener
         case JunctionMediator.ACCEPT_INPUT_PIPE:
-            var inputPipeName = notification.type!
-            var inputPipe = notification.body as! IPipeFitting
+            let inputPipeName = notification.type!
+            let inputPipe = notification.body as! IPipeFitting
             
             if junction.registerPipe(inputPipeName, type: Junction.INPUT, pipe: inputPipe) { //weak reference to JunctionMediator (self) to avoid reference cycle with Junction, context is defined as weak too
-                junction.addPipeListener(inputPipeName, context: self, listener: {[weak self] message in self?.handlePipeMessage(message); return})
+                junction.addPipeListener(inputPipeName, context: self, listener: {[weak self] message in self!.handlePipeMessage(message)})
             }
             
         // accept an output pipe
         case JunctionMediator.ACCEPT_OUTPUT_PIPE:
-            var outputPipeName = notification.type!
-            var outputPipe = notification.body as! IPipeFitting
+            let outputPipeName = notification.type!
+            let outputPipe = notification.body as! IPipeFitting
             junction.registerPipe(outputPipeName, type: Junction.OUTPUT, pipe: outputPipe)
             
         default:

@@ -19,16 +19,16 @@ public protocol IPipeAware {
     /**
     Connect input Pipe Fitting.
     
-    :param: name name of the input pipe
-    :param: pipe input Pipe Fitting
+    - parameter name: name of the input pipe
+    - parameter pipe: input Pipe Fitting
     */
     func acceptInputPipe(name: String, pipe: IPipeFitting)
     
     /**
     Connect output Pipe Fitting.
     
-    :param: name name of the input pipe
-    :param: pipe output Pipe Fitting
+    - parameter name: name of the input pipe
+    - parameter pipe: output Pipe Fitting
     */
     func acceptOutputPipe(name: String, pipe: IPipeFitting)
     

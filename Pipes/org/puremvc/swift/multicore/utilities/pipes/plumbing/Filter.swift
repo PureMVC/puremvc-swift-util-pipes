@@ -66,12 +66,12 @@ public class Filter: Pipe {
     The Filter only acts on the control message if it is targeted 
     to this named filter instance. Otherwise it writes through to the 
     output.
-
-    :returns: Boolean True if the filter process does not throw an error and subsequent operations 
+     
+    - parameter message: `IPipeMessage` to write on the output
+    - returns: Boolean True if the filter process does not throw an error and subsequent operations 
     in the pipeline succede.
     */
     public override func write(message: IPipeMessage) -> Bool {
-        var outputMessage: IPipeMessage
         var success = true
         
         // Filter normal messages
@@ -140,7 +140,7 @@ public class Filter: Pipe {
     arbitrary properties and values your filter method 
     requires.
     
-    :param: newValue the filter function.
+    - parameter newValue: the filter function.
     */
     public var filter: ((message: IPipeMessage, params: Any?) -> Bool)?  {
         get { return _filter }
@@ -154,7 +154,7 @@ public class Filter: Pipe {
     properties and values your filter method requires to 
     operate.
 
-    :param: newValue the parameters object
+    - parameter newValue: the parameters object
     */
     public var params: Any? {
         get { return _params }

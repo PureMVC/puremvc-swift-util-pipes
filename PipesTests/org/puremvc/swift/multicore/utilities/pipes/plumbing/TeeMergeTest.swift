@@ -39,23 +39,23 @@ class TeeMergeTest: XCTestCase, NSXMLParserDelegate {
     */
     func testConnectingIOPipes() {
         // create input pipe
-        var output1: IPipeFitting = Pipe()
+        let output1: IPipeFitting = Pipe()
         
         // create input pipes 1, 2, 3 and 4
-        var pipe1: IPipeFitting = Pipe()
-        var pipe2: IPipeFitting = Pipe()
-        var pipe3: IPipeFitting = Pipe()
-        var pipe4: IPipeFitting = Pipe()
+        let pipe1: IPipeFitting = Pipe()
+        let pipe2: IPipeFitting = Pipe()
+        let pipe3: IPipeFitting = Pipe()
+        let pipe4: IPipeFitting = Pipe()
         
         // create splitting tee (args are first two input fittings of tee)
-        var teeMerge: TeeMerge = TeeMerge(input1: pipe1, input2: pipe2)
+        let teeMerge: TeeMerge = TeeMerge(input1: pipe1, input2: pipe2)
         
         // connect 2 extra inputs for a total of 4
-        var connectedExtra1 = teeMerge.connectInput(pipe3)
-        var connectedExtra2 = teeMerge.connectInput(pipe4)
+        let connectedExtra1 = teeMerge.connectInput(pipe3)
+        let connectedExtra2 = teeMerge.connectInput(pipe4)
         
         // connect the single output
-        var connected = output1.connect(teeMerge)
+        _ = output1.connect(teeMerge)
         
         // test assertions
         XCTAssertTrue(pipe1 is Pipe, "Expecting pipe1 is Pipe")
@@ -71,31 +71,31 @@ class TeeMergeTest: XCTestCase, NSXMLParserDelegate {
     Test receiving messages from two pipes using a TeeMerge.
     */
     func testReceiveMessagesFromTwoPipesViaTeeMerge() {
-        var data1: NSData = "<testMessage testAtt='Pipe 1 Message'/>".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) as NSData!
-        var data2: NSData = "<testMessage testAtt='Pipe 2 Message'/>".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) as NSData!
+        let data1: NSData = "<testMessage testAtt='Pipe 1 Message'/>".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) as NSData!
+        let data2: NSData = "<testMessage testAtt='Pipe 2 Message'/>".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) as NSData!
         
         // create a message to send on pipe 1
-        var pipe1Message: IPipeMessage = Message(type: Message.NORMAL, header: ["testProp": 1], body: data1, priority: Message.PRIORITY_LOW)
+        let pipe1Message: IPipeMessage = Message(type: Message.NORMAL, header: ["testProp": 1], body: data1, priority: Message.PRIORITY_LOW)
         
         // create a message to send on pipe 2
-        var pipe2Message: IPipeMessage = Message(type: Message.NORMAL, header: ["testProp": 2], body: data2, priority: Message.PRIORITY_HIGH)
+        let pipe2Message: IPipeMessage = Message(type: Message.NORMAL, header: ["testProp": 2], body: data2, priority: Message.PRIORITY_HIGH)
         
         // create pipes 1 and 2
-        var pipe1: IPipeFitting = Pipe()
-        var pipe2: IPipeFitting = Pipe()
+        let pipe1: IPipeFitting = Pipe()
+        let pipe2: IPipeFitting = Pipe()
         
         // create merging tee (args are first two input fittings of tee)
-        var teeMerge = TeeMerge(input1: pipe1, input2: pipe2)
+        let teeMerge = TeeMerge(input1: pipe1, input2: pipe2)
         
         // create listener
-        var listener: PipeListener = PipeListener(context: self, listener: self.callBackMethod)
+        let listener: PipeListener = PipeListener(context: self, listener: self.callBackMethod)
         
         // connect the listener to the tee and write the messages
-        var connected = teeMerge.connect(listener)
+        let connected = teeMerge.connect(listener)
         
         // write messages to their respective pipes
-        var pipe1Written = pipe1.write(pipe1Message)
-        var pipe2Written = pipe2.write(pipe2Message)
+        let pipe1Written = pipe1.write(pipe1Message)
+        let pipe2Written = pipe2.write(pipe2Message)
         
         // test assertions
         XCTAssertNotNil(pipe1Message as! Message, "Expecting pipe1Message as Message")
@@ -149,33 +149,33 @@ class TeeMergeTest: XCTestCase, NSXMLParserDelegate {
     */
     func testReceiveMessagesFromFourPipesViaTeeMerge() {
         // create a message to send on pipe 1
-        var pipe1Message = Message(type: Message.NORMAL, header: ["testProp": 1])
-        var pipe2Message = Message(type: Message.NORMAL, header: ["testProp": 2])
-        var pipe3Message = Message(type: Message.NORMAL, header: ["testProp": 3])
-        var pipe4Message = Message(type: Message.NORMAL, header: ["testProp": 4])
+        let pipe1Message = Message(type: Message.NORMAL, header: ["testProp": 1])
+        let pipe2Message = Message(type: Message.NORMAL, header: ["testProp": 2])
+        let pipe3Message = Message(type: Message.NORMAL, header: ["testProp": 3])
+        let pipe4Message = Message(type: Message.NORMAL, header: ["testProp": 4])
         
         // create pipes 1, 2, 3 and 4
-        var pipe1: IPipeFitting = Pipe()
-        var pipe2: IPipeFitting = Pipe()
-        var pipe3: IPipeFitting = Pipe()
-        var pipe4: IPipeFitting = Pipe()
+        let pipe1: IPipeFitting = Pipe()
+        let pipe2: IPipeFitting = Pipe()
+        let pipe3: IPipeFitting = Pipe()
+        let pipe4: IPipeFitting = Pipe()
         
         // create merging tee
-        var teeMerge: TeeMerge = TeeMerge(input1: pipe1, input2: pipe2)
-        var connectedExtraInput3 = teeMerge.connectInput(pipe3)
-        var connectedExtraInput4 = teeMerge.connectInput(pipe4)
+        let teeMerge: TeeMerge = TeeMerge(input1: pipe1, input2: pipe2)
+        let connectedExtraInput3 = teeMerge.connectInput(pipe3)
+        let connectedExtraInput4 = teeMerge.connectInput(pipe4)
         
         // create listener
-        var listener = PipeListener(context: self, listener: self.callBackMethod)
+        let listener = PipeListener(context: self, listener: self.callBackMethod)
         
         // connect the listener to the tee and write the messages
-        var connected = teeMerge.connect(listener)
+        let connected = teeMerge.connect(listener)
         
         // write messages to their respective pipes
-        var pipe1written = pipe1.write(pipe1Message)
-        var pipe2written = pipe2.write(pipe2Message)
-        var pipe3written = pipe3.write(pipe3Message)
-        var pipe4written = pipe4.write(pipe4Message)
+        let pipe1written = pipe1.write(pipe1Message)
+        let pipe2written = pipe2.write(pipe2Message)
+        let pipe3written = pipe3.write(pipe3Message)
+        let pipe4written = pipe4.write(pipe4Message)
         
         // test assertions
         XCTAssertNotNil(pipe1Message as Message, "pipe1Message as Message")
@@ -241,8 +241,8 @@ class TeeMergeTest: XCTestCase, NSXMLParserDelegate {
     }
     
      //XML parsing routing
-    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject]) {
-        self.testAtt = attributeDict["testAtt"] as? String
+    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
+        self.testAtt = attributeDict["testAtt"]
     }
 
     func testPerformanceExample() {

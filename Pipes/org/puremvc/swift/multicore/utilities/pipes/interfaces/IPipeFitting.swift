@@ -26,7 +26,7 @@ public protocol IPipeFitting {
     chain, as water typically flows one direction 
     through a physical pipe.
     
-    :returns: Boolean true if no other fitting was already connected.
+    - returns: Boolean true if no other fitting was already connected.
     */
     func connect(output: IPipeFitting) -> Bool
     
@@ -40,7 +40,7 @@ public protocol IPipeFitting {
     connect them to the input and output of whatever 
     fiting that you're splicing in.
     
-    :returns: IPipeFitting the now disconnected output fitting
+    - returns: IPipeFitting the now disconnected output fitting
     */
     func disconnect() -> IPipeFitting?
     

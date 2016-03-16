@@ -86,13 +86,13 @@ public class Queue: Pipe {
     /**
     Store a message.
     
-    :param: message the IPipeMessage to enqueue.
+    - parameter message: the IPipeMessage to enqueue.
     */
     func store(message: IPipeMessage) {
         dispatch_barrier_sync(messagesQueue) {
             self.messages.append(message)
             if self.mode == QueueControlMessage.SORT {
-                self.messages.sort(self.sortMessagesByPriority)
+                self.messages.sortInPlace(self.sortMessagesByPriority)
             }
         }
     }
@@ -107,15 +107,15 @@ public class Queue: Pipe {
     
     NOTE: This empties the queue.
     
-    :returns: Bool true if all messages written successfully.
+    - returns: Bool true if all messages written successfully.
     */
     func flush() -> Bool { //read
         var success = true
         
         dispatch_sync(messagesQueue) {
             while (!self.messages.isEmpty) {
-                var message = self.messages.removeAtIndex(0) as! Message
-                var ok = self.output?.write(message)
+                let message = self.messages.removeAtIndex(0) as! Message
+                let ok = self.output?.write(message)
                 if ok != true {
                     success = false
                 }

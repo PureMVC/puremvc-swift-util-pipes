@@ -31,12 +31,12 @@ class MessageTest: XCTestCase, NSXMLParserDelegate {
     Tests the constructor parameters and getters.
     */
     func testConstructorAndGetters() {
-        var data = "<testMessage testAtt='Hello' />".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+        let data = "<testMessage testAtt='Hello' />".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
         
         // create a message with complete constructor args
         var message: IPipeMessage = Message(type: Message.NORMAL, header: ["testProp": "testval"], body: data, priority: Message.PRIORITY_HIGH)
         
-        var parser = NSXMLParser(data: data!)
+        let parser = NSXMLParser(data: data!)
         parser.delegate = self
         parser.parse()
         
@@ -73,11 +73,11 @@ class MessageTest: XCTestCase, NSXMLParserDelegate {
         
         message.header = ["testProp": "testval"]
         
-        var data = "<testMessage testAtt='Hello' />".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+        let data = "<testMessage testAtt='Hello' />".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
         message.body = data
         message.priority = Message.PRIORITY_LOW
         
-        var parser = NSXMLParser(data: message.body as! NSData)
+        let parser = NSXMLParser(data: message.body as! NSData)
         parser.delegate = self
         parser.parse()
         
@@ -90,9 +90,9 @@ class MessageTest: XCTestCase, NSXMLParserDelegate {
     }
     
     
-    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject]) {
+    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         self.elementName = elementName
-        self.testAtt = (attributeDict["testAtt"] as! String)
+        self.testAtt = attributeDict["testAtt"]
     }
 
     func testPerformanceExample() {
