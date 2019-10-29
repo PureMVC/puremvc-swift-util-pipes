@@ -1,0 +1,17 @@
+/.previous-build
+xcuserdata
+.DS_Store
+*~
+\#*
+.\#*
+.*.sw[nop]
+*.xcscmblueprint
+/default.profraw
+*.xcodeproj
+
+.swiftpm
+Package.resolved
+build
+.build
+
+.idea/

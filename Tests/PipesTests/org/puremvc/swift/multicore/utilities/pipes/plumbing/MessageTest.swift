@@ -34,7 +34,7 @@ class MessageTest: XCTestCase, XMLParserDelegate {
         let data = "<testMessage testAtt='Hello' />".data(using: String.Encoding.utf8, allowLossyConversion: false)
         
         // create a message with complete constructor args
-        var message: IPipeMessage = Message(type: Message.NORMAL, header: ["testProp": "testval"], body: data, priority: Message.PRIORITY_HIGH)
+        let message: IPipeMessage = Message(type: Message.NORMAL, header: ["testProp": "testval"], body: data, priority: Message.PRIORITY_HIGH)
         
         let parser = XMLParser(data: data!)
         parser.delegate = self

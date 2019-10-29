@@ -136,7 +136,7 @@ class FilterTest: XCTestCase {
         XCTAssertTrue(messagesReceived.count == 1, "Expecting received 1 messages")
         
         // test filtered message assertions (no change to message)
-        var received1 = messagesReceived.remove(at: 0) as IPipeMessage
+        let received1 = messagesReceived.remove(at: 0) as IPipeMessage
         XCTAssertNotNil(received1 as! Message, "Expecting received1 is Message")
         XCTAssertTrue(received1 as! Message === message as! Message, "Expecting received1 === message")
         XCTAssertTrue((received1.header as! Rectangle).width == 10, "Expecting recevied1.header['width'] == 10")
@@ -157,7 +157,7 @@ class FilterTest: XCTestCase {
         XCTAssertTrue(messagesReceived.count == 1, "Expecting received 1 messages")
         
         // test filtered message assertions (message filtered)
-        var received2 = messagesReceived.remove(at: 0) as IPipeMessage
+        let received2 = messagesReceived.remove(at: 0) as IPipeMessage
         XCTAssertNotNil(received2 as! Message, "Expecting received2 is IPipeMessage")
         XCTAssertNotNil(received2 as! Message === message as! Message, "Expecting received2 === message")
         XCTAssertTrue((received2.header as! Rectangle).width == 100, "Expecting received2.header['width'] == 100")
@@ -200,7 +200,7 @@ class FilterTest: XCTestCase {
         XCTAssertTrue(messagesReceived.count == 1, "Expecting received 1 messages")
         
         // test filtered message assertions (message filtered with overridden parameters)
-        var received = messagesReceived.remove(at: 0) as IPipeMessage
+        let received = messagesReceived.remove(at: 0) as IPipeMessage
         XCTAssertNotNil(received as! Message, "Expecting received as Message")
         XCTAssertTrue(received as! Message === message as Message, "Expecting received === message")
         XCTAssertTrue((received.header as! Rectangle).width == 50, "Expecting header['width'] == 50")
@@ -250,7 +250,7 @@ class FilterTest: XCTestCase {
         XCTAssertTrue(messagesReceived.count == 1, "Expecting received 1 messages")
         
         // test filtered message assertions (message filtered with overridden filter function)
-        var received = messagesReceived.remove(at: 0) as IPipeMessage
+        let received = messagesReceived.remove(at: 0) as IPipeMessage
         XCTAssertNotNil(received as! Message, "Expecting received as Message")
         XCTAssertTrue(received as! Message === message as Message, "Expecting received === message") // object equality
         XCTAssertTrue((received.header as! Rectangle).width == 1, "Expecting header['width'] == 1")
@@ -286,7 +286,7 @@ class FilterTest: XCTestCase {
         // pass in an anonymous function and an anonymous parameter object
         let filter = Filter(name: "bozoFilter", output: PipeListener(context: self, listener: self.callBackMethod),
                             filter: { (message: IPipeMessage, params: Any?) -> Bool in
-                                var header = message.header as! [String: Int]
+                                let header = message.header as! [String: Int]
                                 let bozoThreshold = (params as! [String: Int])["bozoThreshold"]!
                                 return header["bozoLevel"]! > bozoThreshold ? false : true
         },
@@ -304,7 +304,7 @@ class FilterTest: XCTestCase {
         XCTAssertTrue(written2 == true, "Expecting wrote good message")
         XCTAssertTrue(messagesReceived.count == 1, "Expecting received 1 messages")
         
-        // test filtered message assertions (message with good auth token passed
+        // test filtered message assertions (message with good auth token passed)
         let received = messagesReceived.remove(at: 0) as IPipeMessage
         XCTAssertNotNil(received as! Message, "Expecting received is Message") // object equality
         XCTAssertTrue(received as! Message === message2 as Message, "Expecting received === message2")

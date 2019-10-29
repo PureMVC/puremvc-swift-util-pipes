@@ -54,7 +54,6 @@ class JunctionTest: XCTestCase {
         let registered = junction.registerPipe("testInputPipe", type: Junction.INPUT, pipe: pipe)
         
         // test assertions
-        //XCTAssertNotNil(pipe is Pipe, "Expecting pipe is Pipe")
         XCTAssertNotNil(junction as Junction, "Expecting junction is Junction")
         XCTAssertTrue(registered, "Expecting success registering pipe")
         

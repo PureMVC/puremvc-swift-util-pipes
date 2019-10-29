@@ -113,7 +113,7 @@ class TeeMergeTest: XCTestCase, XMLParserDelegate {
         XCTAssertTrue(messagesReceived.count == 2, "Expecting received 2 messages")
         
         // test message 1 assertions
-        var message1: IPipeMessage = messagesReceived.remove(at: 0)
+        let message1: IPipeMessage = messagesReceived.remove(at: 0)
         XCTAssertNotNil(message1 as! Message, "Expecting message1 as Message")
         XCTAssertTrue(message1 as! Message === pipe1Message as! Message, "Expecting message1 === pipe1Message")
         XCTAssertTrue(message1.type == Message.NORMAL, "Expecting message1.type == Message.NORMAL")
@@ -129,7 +129,7 @@ class TeeMergeTest: XCTestCase, XMLParserDelegate {
         XCTAssertTrue(message1.priority == Message.PRIORITY_LOW, "Expecting message1.priority == Message.PRIORITY_LOW")
         
         // test message 2 assertions
-        var message2: IPipeMessage = messagesReceived.remove(at: 0)
+        let message2: IPipeMessage = messagesReceived.remove(at: 0)
         XCTAssertNotNil(message2 is Message, "Expecting message2 as Message")
         XCTAssertTrue(message2 as! Message === pipe2Message as! Message, "Expecing message2 === pipe2Message")
         XCTAssertTrue(message2.type == Message.NORMAL, "Expecting message2.type == Message.NORMAL")
@@ -201,28 +201,28 @@ class TeeMergeTest: XCTestCase, XMLParserDelegate {
         XCTAssertTrue(messagesReceived.count == 4, "Expecting received 4 messages")
         
         // test message 1 assertions
-        var message1: IPipeMessage = messagesReceived.remove(at: 0)
+        let message1: IPipeMessage = messagesReceived.remove(at: 0)
         XCTAssertNotNil(message1 as! Message, "Expecting message 1 as Message")
         XCTAssertTrue(message1 as! Message === pipe1Message as Message, "Expecting message1 === pipe1Message")
         XCTAssertEqual(message1.type, Message.NORMAL, "Expecting message1.type == Message.NORMAL")
         XCTAssertTrue((message1.header as! Dictionary)["testProp"] == 1, "Expecting message1.header['testProp'] == 1")
         
         // test message 2 assertions
-        var message2: IPipeMessage = messagesReceived.remove(at: 0)
+        let message2: IPipeMessage = messagesReceived.remove(at: 0)
         XCTAssertNotNil(message2 as! Message, "Expecting message 2 as Message")
         XCTAssertTrue(message2 as! Message === pipe2Message as Message, "Expecting message2 === pipe1Message")
         XCTAssertEqual(message2.type, Message.NORMAL, "Expecting message2.type == Message.NORMAL")
         XCTAssertTrue((message2.header as! Dictionary)["testProp"] == 2, "Expecting message2.header['testProp'] == 2")
         
         // test message 3 assertions
-        var message3: IPipeMessage = messagesReceived.remove(at: 0)
+        let message3: IPipeMessage = messagesReceived.remove(at: 0)
         XCTAssertNotNil(message3 as! Message, "Expecting message 3 as Message")
         XCTAssertTrue(message3 as! Message === pipe3Message as Message, "Expecting message3 === pipe1Message")
         XCTAssertEqual(message3.type, Message.NORMAL, "Expecting message3.type == Message.NORMAL")
         XCTAssertTrue((message3.header as! Dictionary)["testProp"] == 3, "Expecting message1.header['testProp'] == 3")
         
         // test message 4 assertions
-        var message4: IPipeMessage = messagesReceived.remove(at: 0)
+        let message4: IPipeMessage = messagesReceived.remove(at: 0)
         XCTAssertNotNil(message4 as! Message, "Expecting message 4 as Message")
         XCTAssertTrue(message4 as! Message === pipe4Message as Message, "Expecting message4 === pipe1Message")
         XCTAssertEqual(message4.type, Message.NORMAL, "Expecting message1.type == Message.NORMAL")

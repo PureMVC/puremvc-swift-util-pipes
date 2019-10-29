@@ -17,7 +17,7 @@ class QueueTest: XCTestCase {
     /**
     Array of received messages.
     
-    Used by `callBackMedhod` as a place to store the recieved messages.
+    Used by `callBackMethod` as a place to store the recieved messages.
     */
     private var messagesReceived = [IPipeMessage]()
     

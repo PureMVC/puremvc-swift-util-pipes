@@ -112,7 +112,7 @@ public class Queue: Pipe {
     func flush() -> Bool { //read
         var success = true
         
-        messagesQueue.sync {
+        messagesQueue.sync(flags: .barrier, execute: {
             while (!self.messages.isEmpty) {
                 let message = self.messages.remove(at: 0) as! Message
                 let ok = self.output?.write(message)
@@ -120,7 +120,7 @@ public class Queue: Pipe {
                     success = false
                 }
             }
-        }
+        })
         return success
     }
     

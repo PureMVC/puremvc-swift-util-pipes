@@ -62,7 +62,6 @@ class PipeListenerTest: XCTestCase, XMLParserDelegate {
         let written: Bool = pipe.write(messageToSend)
         
         // test assertions
-        //XCTAssertNotNil(pipe as! Pipe, "Expecting pipe as Pipe")
         XCTAssertTrue(connected, "Expected connected listener to pipe")
         XCTAssertTrue(written, "Expecting wrote message to pipe")
         XCTAssertNotNil(messageReceived as! Message, "Expecting messageReceived is Message")

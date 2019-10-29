@@ -86,7 +86,6 @@ class TeeSplitTest: XCTestCase {
     Finally, make sure that the when a message is sent to
     the tee that the correct number of output messages is
     written.
-    
     */
     func testDisconnectFitting() {
         messagesReceived = []
@@ -148,8 +147,6 @@ class TeeSplitTest: XCTestCase {
         
         // test assertions
         XCTAssertNotNil(message is Message, "message is not nil")
-        //XCTAssertNotNil(pipe1 as! Pipe, "pipe1 is not nil")
-        //XCTAssertNotNil(pipe2 as! Pipe, "pipe2 is not nil")
         XCTAssertNotNil(teeSplit as TeeSplit, "teeSplit is not nil")
         XCTAssertTrue(connected1, "Expecting connected anonymous listener to pipe 1")
         XCTAssertTrue(connected2, "Expecting connected anonymous listener to pipe 2")
